@@ -1,38 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  creationTimestamp: null
-  labels:
-    app: flaskdemo
-  name: flaskdemo
+  name: netflix
+  namespace: solution
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
-      app: flaskdemo
-  strategy: {}
+      app: netflix
   template:
     metadata:
-      creationTimestamp: null
       labels:
-        app: flaskdemo
+        app: netflix
     spec:
       containers:
-      - image: raj80dockerid/test:6
-        name: flaskdemo
-        resources: {}
-status: {}
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: lb-service
-  labels:
-    app: lb-service
-spec:
-  type: LoadBalancer
-  ports:
-  - port: 80
-    targetPort: 5000
-  selector:
-    app: flaskdemo
+      - name: netflix
+        image: karamfci/mh-repo:latest
+        ports:
+        - containerPort: 80
+      imagePullSecrets:
+      - name: regcred
