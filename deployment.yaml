@@ -20,3 +20,17 @@ spec:
         - containerPort: 80
       imagePullSecrets:
       - name: regcred
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: netflix-service
+  namespace: solution
+spec:
+  selector:
+    app: netflix
+  ports:
+    - protocol: TCP
+      port: 8089        # The port that will be exposed by the service
+      targetPort: 80  # The port on the container to which the service should forward traffic
+  type: LoadBalancer    # Change to NodePort or LoadBalancer if needed
