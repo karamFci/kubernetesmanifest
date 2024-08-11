@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: netflix
-        image: karamfci/mh-repo:30
+        image: karamfci/mh-repo:31
         ports:
         - containerPort: 80
       imagePullSecrets:
